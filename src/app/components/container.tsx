@@ -1,34 +1,35 @@
 "use client";
 
-import React from "react";
+import React, { ReactNode } from "react";
 import { ComponentType } from "./types";
 
 export function Container(props: any) {
   const [dragData, setDragData] = React.useState<ComponentType[]>([
     {
-      component: "Col12", 
-      label: "layout",
-      className: "col-12", 
-      propValue: "propValue", 
-      icon: "icon", 
-      animations: [""], 
-      events: {}, 
+      group: 'default',
+      name: 'default',
+      icon: 'div',
+      tag: 'div',
+      className: 'border-2 border-dashed border-gray-300 rounded-lg',
       style: {
-        top: 0,
-        left: 0,
-        width: 100,
-        color: 'skyblue'
-      }, 
-    },
+        backgroundColor: 'red'
+      },
+      children: [],
+      genCode() {
+        return `<div></div>`;
+      }
+    }
   ]);
 
   function handleDrop(e: any) {
     e.preventDefault();
     e.stopPropagation();
     const data = e.dataTransfer.getData("text");
-    console.log(data);
+    const rst = JSON.parse(data);
+    console.log(rst);
+
     setDragData((e) => {
-      return [...e, JSON.parse(data)];
+      return [...e, rst];
     });
   }
 
@@ -39,8 +40,17 @@ export function Container(props: any) {
       onDrop={handleDrop}
     >
       Container12312
-      {dragData.map((item, index) => (
-        <div key={index} className={item.className} style={item.style}>{item.component}</div>
+      {dragData.map(({children, ...item}, index) => (
+        // @ts-ignore
+       <item.tag key={index} {...item} >
+        {children.map((child, j) => (
+          // <div key={j}>12</div>
+          <child.tag key={j} {...child} />
+        ))}
+        {/* {
+          <div>123123</div>
+        } */}
+       </item.tag>
       ))}
     </div>
   );

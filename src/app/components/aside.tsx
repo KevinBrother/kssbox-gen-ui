@@ -1,50 +1,37 @@
 "use client";
-import { Col12 } from "./layouts/col12";
-import { Col66 } from "./layouts/col66";
+// import { Col12 } from "./layouts/col12";
+// import { Col66 } from "./layouts/col66";
+import { ComponentType } from "./types";
+import { Col12} from "./layouts/models/col12";
+import { Col66 } from "./layouts/models/col66";
+
+const models = [new Col12(), new Col66()]
 
 export function Aside() {
-  function handleStagStart(e: any, component: string) {
-    e.dataTransfer.setData("text", JSON.stringify(
-      {
-        component, 
-        label: "layout",
-        className: "col-12", 
-        propValue: "propValue", 
-        icon: "icon", 
-        animations: [""], 
-        events: {}, 
-        style: {
-          top: 0,
-          left: 0,
-          width: 100,
-          color: 'skyblue'
-        }, 
-    }));
+  function handleStagStart(e: any, component: ComponentType) {
+   
+    // const code = component.genCode();
+    // e.dataTransfer.setData("text", code);
+   
+    e.dataTransfer.setData("text", JSON.stringify(component));
   }
 
 
   return (
     <div className="aside">
-      <div className="flex justify-between p-4" draggable onDragStart={(e) =>handleStagStart(e, 'col12')}>
-        <Col12 />
-        <button
-          onClick={() => {
-            alert("拖动");
-          }}
-        >
-          拖动
-        </button>
-      </div>
-      <div className="flex justify-between p-4" draggable onDragStart={(e) =>handleStagStart(e, 'col66')}>
-        <Col66 />
-        <button
-          onClick={() => {
-            alert("拖动");
-          }}
-        >
-          拖动
-        </button>
-      </div>
+      {models.map((model, index) => (
+        <div key={index} className="flex justify-between p-4" draggable onDragStart={(e) =>handleStagStart(e, model)}>
+          <div>{model.name}</div>
+          <button
+            onClick={() => {
+              alert("拖动");
+            }}
+          >
+            拖动
+          </button>
+        </div>
+      )) }
+
     </div>
   );
 }
