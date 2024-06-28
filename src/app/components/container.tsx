@@ -2,6 +2,7 @@
 
 import React, { ReactNode } from "react";
 import { ComponentType } from "./types";
+import { globalStore } from "../store";
 
 export function Container(props: any) {
   const [dragData, setDragData] = React.useState<ComponentType[]>([
@@ -21,6 +22,10 @@ export function Container(props: any) {
     }
   ]);
 
+  React.useEffect(() => {
+    globalStore.setComponents(dragData)
+  }, [dragData]);
+
   function handleDrop(e: any) {
     e.preventDefault();
     e.stopPropagation();
@@ -35,7 +40,7 @@ export function Container(props: any) {
 
   return (
     <div
-      className="container h-full"
+      className="h-full w-full"
       onDragOver={(e) => e.preventDefault()}
       onDrop={handleDrop}
     >
