@@ -2,18 +2,18 @@
 // import { Col12 } from "./layouts/col12";
 // import { Col66 } from "./layouts/col66";
 import { ComponentType } from "./types";
-import { Col12} from "./layouts/models/col12";
-import { Col66 } from "./layouts/models/col66";
+import { Col12} from "./models/layouts/col12";
+import { Col66 } from "./models/layouts/col66";
 
 const models = [new Col12(), new Col66()]
 
 export function Aside() {
   function handleStagStart(e: any, component: ComponentType) {
    
-    // const code = component.genCode();
-    // e.dataTransfer.setData("text", code);
+    const code = component.genCode();
+    e.dataTransfer.setData("text", code);
    
-    e.dataTransfer.setData("text", JSON.stringify(component));
+    // e.dataTransfer.setData("text", JSON.stringify(component));
   }
 
 

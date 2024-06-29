@@ -1,25 +1,11 @@
 "use client";
 
-import React, { ReactNode } from "react";
-import { ComponentType } from "./types";
+import React from "react";
 import { globalStore } from "../store";
 
 export function Container(props: any) {
-  const [dragData, setDragData] = React.useState<ComponentType[]>([
-    {
-      group: 'default',
-      name: 'default',
-      icon: 'div',
-      tag: 'div',
-      className: 'border-2 border-dashed border-gray-300 rounded-lg',
-      style: {
-        backgroundColor: 'red'
-      },
-      children: [],
-      genCode() {
-        return `<div></div>`;
-      }
-    }
+  const [dragData, setDragData] = React.useState<string[]>([
+    '<div className="bg-blue-500">default<div>'
   ]);
 
   React.useEffect(() => {
@@ -30,11 +16,10 @@ export function Container(props: any) {
     e.preventDefault();
     e.stopPropagation();
     const data = e.dataTransfer.getData("text");
-    const rst = JSON.parse(data);
-    console.log(rst);
+    console.log(data);
 
     setDragData((e) => {
-      return [...e, rst];
+      return [...e, data];
     });
   }
 
@@ -45,17 +30,8 @@ export function Container(props: any) {
       onDrop={handleDrop}
     >
       Container12312
-      {dragData.map(({children, ...item}, index) => (
-        // @ts-ignore
-       <item.tag key={index} {...item} >
-        {children.map((child, j) => (
-          // <div key={j}>12</div>
-          <child.tag key={j} {...child} />
-        ))}
-        {/* {
-          <div>123123</div>
-        } */}
-       </item.tag>
+      {dragData.map((htmlStr, index) => (
+        <div className="box bg-gray-200 p-2 m-2" key={index} dangerouslySetInnerHTML={{ __html: htmlStr }}></div>
       ))}
     </div>
   );

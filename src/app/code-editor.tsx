@@ -6,10 +6,10 @@ export const CodeEditor = observer(() => {
   return (
     <div>
       
-      {globalStore.data.length} 
+      {globalStore.htmlStrArr.length} 
       <br/>
-      {globalStore.data.map((item, index) => {
-        return `<${item.tag} key={index} style={${item.style}}>{${item.name}}</${item.tag}>`
+      {globalStore.htmlStrArr.map((item, index) => {
+        return item
       })}
     
     </div>

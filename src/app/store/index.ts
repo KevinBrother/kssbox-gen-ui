@@ -1,16 +1,15 @@
 import { makeAutoObservable } from "mobx";
-import { ComponentType } from "../components/types";
 
 class GlobalStore {
     isShowCodeEditor = false; // 是否显示代码
-    data: ComponentType[] = []
+    htmlStrArr: string[] = []
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    setComponents(data: ComponentType[]) {
-        this.data = data;
+    setComponents(htmlStrArr: string[]) {
+        this.htmlStrArr = htmlStrArr;
     }
 
     toggleCodeEditor() {
