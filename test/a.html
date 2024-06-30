@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .dropzone {
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+            border: 2px dashed #000;
+            text-align: center;
+            line-height: 100px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <button draggable="true" ondragstart="event.dataTransfer.setData('text', 'button')">click me</button>
+
+    <div class="dropzone" ondragover="event.preventDefault()" ondrop="handleDrop(event)">
+        drop
+    </div>
+    
+    <script>
+        function handleDrop(event) {
+            event.preventDefault();
+            const data = event.dataTransfer.getData("text");
+            // 把button 放到 dropzone 里面
+            document.querySelector(".dropzone").innerHTML = data;
+        }
+    </script>
+</body>
+</html>

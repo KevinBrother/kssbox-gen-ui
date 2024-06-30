@@ -11,8 +11,19 @@ export class Col12 implements ComponentType {
     children: ComponentType[] = []
     constructor() {}
 
+    handleDragOver(e: any) {
+        e.preventDefault();
+    }
+
+    handleDrop(e: any) {
+        e.preventDefault();
+        e.stopPropagation();
+        const data = e.dataTransfer.getData("text");
+        console.log(data);
+    }
+
     genRenderCode() {
-        return `<${this.tag} class="${this.className}">
+        return `<${this.tag} ondragover="${this.handleDragOver}" ondrop=${this.handleDrop} class="${this.className}">
         ${this.name}
         ${this.children.map(child => child.genRenderCode()).join('')}
         </${this.tag}>`
