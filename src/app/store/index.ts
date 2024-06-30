@@ -8,7 +8,7 @@ class GlobalStore {
         makeAutoObservable(this);
     }
 
-    setComponents(htmlStrArr: string[]) {
+    setHTMLs(htmlStrArr: string[]) {
         this.htmlStrArr = htmlStrArr;
     }
 

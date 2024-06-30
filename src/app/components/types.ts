@@ -1,6 +1,9 @@
 import { CSSProperties } from "react"
 
-
+export interface TransferType {
+    renderCode: string
+    reactCode: string
+}
 export interface ComponentType {
     group: string
     name: string
@@ -9,5 +12,6 @@ export interface ComponentType {
     className: string
     style: CSSProperties
     children: ComponentType[]
-    genCode(): string
+    genRenderCode(): string
+    genReactCode(): string
 }

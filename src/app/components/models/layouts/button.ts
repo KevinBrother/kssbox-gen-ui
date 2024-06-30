@@ -11,10 +11,17 @@ export class Button implements ComponentType {
     children: ComponentType[] = []
     constructor() {}
 
-    genCode() {
+    genRenderCode() {
         return `<${this.tag} class="${this.className}">
         ${this.name}
-        ${this.children.map(child => child.genCode()).join('')}
+        ${this.children.map(child => child.genRenderCode()).join('')}
+        </${this.tag}>`
+    }
+
+    genReactCode() {
+        return `<${this.tag} className="${this.className}">
+        ${this.name}
+        ${this.children.map(child => child.genReactCode()).join('')}
         </${this.tag}>`
     }
 }

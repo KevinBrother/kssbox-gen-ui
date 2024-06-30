@@ -14,10 +14,17 @@ export class Col66 implements ComponentType {
     ]
     constructor() {}
 
-    genCode() {
+    genRenderCode() {
         return `<${this.tag} className="${this.className}">
         ${this.name}
-        ${this.children.map(child => child.genCode()).join('')}
+        ${this.children.map(child => child.genRenderCode()).join('')}
+        </${this.tag}>`
+    }
+
+    genReactCode() {
+        return `<${this.tag} className="${this.className}">
+        ${this.name}
+        ${this.children.map(child => child.genReactCode()).join('')}
         </${this.tag}>`
     }
 }
