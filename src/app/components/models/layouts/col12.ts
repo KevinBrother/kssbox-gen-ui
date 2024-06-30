@@ -12,7 +12,7 @@ export class Col12 implements ComponentType {
     constructor() {}
 
     genCode() {
-        return `<${this.tag} className="${this.className}">
+        return `<${this.tag} class="${this.className}">
         ${this.name}
         ${this.children.map(child => child.genCode()).join('')}
         </${this.tag}>`

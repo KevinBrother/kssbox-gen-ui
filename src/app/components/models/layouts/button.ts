@@ -1,12 +1,12 @@
 import { CSSProperties } from "react";
 import { ComponentType } from "../../types";
 
-export class Col6 implements ComponentType {
-    group: string = "layout"
-    name: string = "col12"
-    icon: string = "columns"
-    tag: string = "div"
-    className: string = "col-6 columns-6 h-8 border-2 border-gray-300 rounded-lg"
+export class Button implements ComponentType {
+    group: string = "component"
+    name: string = "button"
+    icon: string = "button"
+    tag: string = "button"
+    className: string = "pointer-events-auto ml-8 rounded-md bg-indigo-600 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-indigo-500"
     style: CSSProperties = {}
     children: ComponentType[] = []
     constructor() {}

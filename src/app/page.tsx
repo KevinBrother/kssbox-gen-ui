@@ -1,4 +1,6 @@
-import Image from "next/image";
+'use client'
+
+
 import { Aside } from "./components/aside";
 import { Container } from "./components/container";
 import { CodeEditor } from "./code-editor";

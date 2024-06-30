@@ -4,13 +4,15 @@ import React from "react";
 import { globalStore } from "../store";
 
 export function Container(props: any) {
-  const [dragData, setDragData] = React.useState<string[]>([
-    '<div className="bg-blue-500">default<div>'
-  ]);
+  const [dragData, setDragData] = React.useState<string[]>([]);
 
   React.useEffect(() => {
     globalStore.setComponents(dragData)
   }, [dragData]);
+
+  React.useEffect(()=>{
+    setDragData(['<div className="bg-blue-500">default<div>'])
+  },[])
 
   function handleDrop(e: any) {
     e.preventDefault();

@@ -4,16 +4,15 @@
 import { ComponentType } from "./types";
 import { Col12} from "./models/layouts/col12";
 import { Col66 } from "./models/layouts/col66";
+import { Button } from "./models/layouts/button";
 
-const models = [new Col12(), new Col66()]
+const models = [new Col12(), new Col66(), new Button()]
 
 export function Aside() {
   function handleStagStart(e: any, component: ComponentType) {
    
     const code = component.genCode();
     e.dataTransfer.setData("text", code);
-   
-    // e.dataTransfer.setData("text", JSON.stringify(component));
   }
 
 
