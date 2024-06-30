@@ -13,7 +13,7 @@ export default observer(() => {
       <div className="w-40 border-2 border-gray-200">
         <Aside/>
       </div>
-      <div className="w-2/5">
+      <div className={globalStore.isShowCodeEditor? "w-2/5" : 'flex-1'}>
         <Container/>
       </div>
       <div hidden={!globalStore.isShowCodeEditor} className="w-2/5">

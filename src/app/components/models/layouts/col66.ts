@@ -6,7 +6,7 @@ export class Col66 implements ComponentType {
     name: string = "col66"
     icon: string = "columns"
     tag: string = "div"
-    className: string = "col-66 columns-12 min-h-10 border-2 border-gray-300 rounded-lg"
+    className: string = "col-66 columns-2 min-h-10 border-2 border-gray-300 rounded-lg"
     style: CSSProperties = {}
     children: ComponentType[] = [
         new Col6(),
@@ -15,15 +15,13 @@ export class Col66 implements ComponentType {
     constructor() {}
 
     genRenderCode() {
-        return `<${this.tag} className="${this.className}">
-        ${this.name}
+        return `<${this.tag} class="${this.className}">
         ${this.children.map(child => child.genRenderCode()).join('')}
         </${this.tag}>`
     }
 
     genReactCode() {
         return `<${this.tag} className="${this.className}">
-        ${this.name}
         ${this.children.map(child => child.genReactCode()).join('')}
         </${this.tag}>`
     }
