@@ -49,15 +49,7 @@ export function Container(props: any) {
       onDrop={handleDrop}
     >
       Container12312
-      {renderCodeArr.map((htmlStr, index) => (
-        <div
-          className="box bg-gray-200 p-2 m-2"
-          key={index}
-          dangerouslySetInnerHTML={{ __html: htmlStr }}
-        ></div>
-      ))}
-
-      <CTest/>
+      {/* <CTest/> */}
       {componentRef.map((ref) => {
         const CurComponent = componentMap[ref];
 

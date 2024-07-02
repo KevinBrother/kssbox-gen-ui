@@ -42,6 +42,7 @@ export class Col12 extends React.Component implements ComponentType {
   render() {
     return (
       <div
+        draggable
         onDragOver={this.handleDragOver}
         onDrop={this.handleDrop}
         className={this.className}
