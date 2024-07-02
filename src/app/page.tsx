@@ -17,7 +17,7 @@ export default observer(() => {
         <Container/>
       </div>
       <div hidden={!globalStore.isShowCodeEditor} className="w-2/5">
-      <CodeEditor />
+      {/* <CodeEditor /> */}
       </div>
     </main>
   );

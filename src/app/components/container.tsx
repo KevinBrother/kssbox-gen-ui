@@ -3,19 +3,22 @@
 import React from "react";
 import { globalStore } from "../store";
 import { TransferType } from "./types";
+import { CTest } from "./models/layouts/c_test";
+import { componentMap } from "./aside";
 
 export function Container(props: any) {
+  const [componentRef, setComponentRef] = React.useState<string[]>([]);
   const [renderCodeArr, setRenderCodeArr] = React.useState<string[]>([]);
   const [reactCodeArr, setReactCodeArr] = React.useState<string[]>([]);
 
   React.useEffect(() => {
-    globalStore.setHTMLs(reactCodeArr)
+    globalStore.setHTMLs(reactCodeArr);
   }, [reactCodeArr]);
 
-  React.useEffect(()=>{
-    setRenderCodeArr(['<div class="bg-blue-500 p-2">default<div>'])
-    setReactCodeArr(['<div className="bg-blue-500 p-2">default<div>'])
-  },[])
+  React.useEffect(() => {
+    setRenderCodeArr(['<div class="bg-blue-500 p-2">default<div>']);
+    setReactCodeArr(['<div className="bg-blue-500 p-2">default<div>']);
+  }, []);
 
   function handleDrop(e: any) {
     e.preventDefault();
@@ -31,6 +34,9 @@ export function Container(props: any) {
       setReactCodeArr((e) => {
         return [...e, parsedData.reactCode];
       });
+      setComponentRef((e) => {
+        return [...e, parsedData.ref];
+      });
     } catch (error) {
       console.error(error);
     }
@@ -44,8 +50,19 @@ export function Container(props: any) {
     >
       Container12312
       {renderCodeArr.map((htmlStr, index) => (
-        <div className="box bg-gray-200 p-2 m-2" key={index} dangerouslySetInnerHTML={{ __html: htmlStr }}></div>
+        <div
+          className="box bg-gray-200 p-2 m-2"
+          key={index}
+          dangerouslySetInnerHTML={{ __html: htmlStr }}
+        ></div>
       ))}
+
+      <CTest/>
+      {componentRef.map((ref) => {
+        const CurComponent = componentMap[ref];
+
+        return <CurComponent key={Math.random()}/>;
+      })}
     </div>
   );
 }
